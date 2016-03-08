@@ -1,0 +1,14 @@
+Projekt Bank
+
+1.	Po stronie administratora
+
+o	Rejestracja (sprawdzanie poprawności)
+o	Modyfikacja klienta (edycja, usunięcie, sprawdzenie poprawności danych po edycji)
+o	Operacje:
+- wpłata/ wypłata/stan konta
+-istniejące lokaty / kredyty (dodaj kredyt/lokatę)
+- zamknięcie rachunku, (jeżeli jest debet nie zamykamy).
+2.	Klient 
+
+
+3.	GUI
