@@ -1,0 +1,84 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,latin-ext);
+
+body { background: url('../img/backgrounds/bg_light.png') repeat repeat; font-family: 'Ubuntu Condensed', sans-serif; }
+
+.square { list-style: square; }
+.squareBtn { border-radius: 0 !important; }
+.clear { clear: both; }
+.padding10 { padding: 10px; }
+.color-info { background: #5bc0de; color: #fff; font-size: 20px; }
+.tl { text-align: left !important; }
+
+
+/* navbar */
+.navbar { margin-top: 20px; }
+ul.nav { text-transform: uppercase; font-size: 15px; text-shadow: 1px 0 1px #fff; }
+#navbar ul li a:hover { color: #0084e0 !important; transition: transform 0.3s, opacity 0.3s; }
+.name { font-size: 35px; color: #0099ff; padding-top: 1px; text-shadow: 1px 1px 1px #fff; font-weight: bold; padding-left: 20px; }
+
+.home #navbar ul li.navigation-home a,
+	.administrator #navbar ul li.navigation-administrator a,
+	.klient #navbar ul li.navigation-klient a,
+	.uslugi #navbar ul li.navigation-uslugi a,
+	.kontakt #navbar ul li.navigation-kontakt a { color: #0084e0; font-weight: bold; }
+
+.skarbonka { margin: 20px 0; }
+
+/* login form */
+h1 { color: #ccc; text-align: left; font-size: 40px; margin-bottom: 40px;}
+
+#logowanie { clear: both; margin: 0px auto 0px; }
+#logowanie-inner { background: #f8f8f8; border-radius: 4px; }
+
+.login-form { padding: 40px 30px; }
+.form-group { position: relative; margin-bottom: 15px; }
+.form-control { width: 100%; height: 50px; border: none; padding: 5px 7px 5px 15px; background: #fff; color: #666; border: 2px solid #ddd; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}
+.form-control:focus, .form-control:focus + .fa { border-color: #0099ff; color: #0099ff; }
+.form-group .fa { position: absolute; right: 15px; top: 17px; color: #999; }
+.log-status.wrong-entry { -moz-animation: wrong-log 0.3s; -webkit-animation: wrong-log 0.3s; animation: wrong-log 0.3s; }
+.log-status.wrong-entry .form-control, .wrong-entry .form-control + .fa { border-color: #ed1c24; color: #ed1c24; }
+.log-btn { background: #0099ff; dispaly: inline-block; width: 100%; font-size: 16px; height: 50px; color: #fff; text-decoration: none; border: none; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+  border-radius: 4px; }
+.link { text-decoration: none; color: #C6C6C6; float: right; font-size: 12px; margin-bottom: 15px; }
+.link:hover { text-decoration: underline; color: #8C918F; }
+.alert { display: none; font-size: 12px; color: #f00; float: left; }
+
+@-moz-keyframes wrong-log {
+  0%, 100% {
+    left: 0px;
+  }
+  20% , 60% {
+    left: 15px;
+  }
+  40% , 80% {
+    left: -15px;
+  }
+}
+@-webkit-keyframes wrong-log {
+  0%, 100% {
+    left: 0px;
+  }
+  20% , 60% {
+    left: 15px;
+  }
+  40% , 80% {
+    left: -15px;
+  }
+}
+@keyframes wrong-log {
+  0%, 100% {
+    left: 0px;
+  }
+  20% , 60% {
+    left: 15px;
+  }
+  40% , 80% {
+    left: -15px;
+  }
+}
+
+
+
+#footer { clear: both; text-align: center; font-size: 18px; margin: 20px auto 20px; }
+#footer-inner { padding: 10px; background: #f8f8f8; border-radius: 3px;   }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADMINISTRATOR | Projekt programistyczny - bank PHP</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+
+    <!-- other -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="administrator">
+    <div class="container">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default wow slideInLeft" data-wow-duration="0.2s" data-wow-delay="0.4s">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="name pull-left">Projekt Bank</span>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navigation-home"><a href="#">Strona główna</a></li>
+              <li class="navigation-administrator"><a href="#">Administrator</a></li>
+              <li class="navigation-klient"><a href="#">Klient</a></li>
+              <li class="navigation-uslugi"><a href="#">Usługi</a></li>
+              <li class="navigation-kontakt"><a href="#">Kontakt</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <section id="logowanie">
+      <div class="container">
+        <div id="logowanie-inner">
+          <div class="row">
+            <div class="col-md-4 wow slideInLeft text-center" data-wow-duration="0.2s" data-wow-delay="0.4s">
+              <img src="assets/img/other/login.png" style="margin-top: 70px;" >
+            </div>
+            <div class="col-md-8 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
+              <div class="login-form">
+                <h1>Panel administracyjny - logowanie</h1>
+                <div class="form-group ">
+                  <input type="text" class="form-control" placeholder="Login " id="UserName">
+                  <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group log-status">
+                  <input type="password" class="form-control" placeholder="Hasło" id="Passwod">
+                  <i class="fa fa-lock"></i>
+                </div>
+                <span class="alert">Nieprawidłowe dane!</span>
+                <a class="link" href="#">Zapomniałeś hasłą</a>
+                <button type="button" class="log-btn" >ZALOGUJ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="footer" class="wow slideInLeft" data-wow-duration="0.2s" data-wow-delay="0.4s">
+        <div class="container">
+          <div id="footer-inner">
+            <div class="row">
+              &copy; 2016
+            </div> 
+          </div>
+        </div>
+    </section>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
