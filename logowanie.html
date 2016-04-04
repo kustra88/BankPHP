@@ -59,17 +59,19 @@
             <div class="col-md-8 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
               <div class="login-form">
                 <h1>Panel administracyjny - logowanie</h1>
-                <div class="form-group ">
-                  <input type="text" class="form-control" placeholder="Login " id="UserName">
-                  <i class="fa fa-user"></i>
-                </div>
-                <div class="form-group log-status">
-                  <input type="password" class="form-control" placeholder="Hasło" id="Passwod">
-                  <i class="fa fa-lock"></i>
-                </div>
-                <span class="alert">Nieprawidłowe dane!</span>
-                <a class="link" href="#">Zapomniałeś hasłą</a>
-                <button type="button" class="log-btn" >ZALOGUJ</button>
+                <form action="zaloguj.php" method="post">
+                  <div class="form-group ">
+                    <input type="text" class="form-control" placeholder="Login " id="UserName" name="login">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <div class="form-group log-status">
+                    <input type="password" class="form-control" placeholder="Hasło" id="Passwod" name="haslo">
+                    <i class="fa fa-lock"></i>
+                  </div>
+                  <span class="alert">Nieprawidłowe dane!</span>
+                  <a class="link" href="#">Zapomniałeś hasłą</a>
+                  <input class="log-btn" type="submit" value="Zaloguj się">
+                </form>
               </div>
             </div>
           </div>
