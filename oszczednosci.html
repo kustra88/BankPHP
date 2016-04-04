@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OSZCZĘDNOŚCI | Projekt programistyczny - bank PHP</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+
+    <!-- other -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="administrator">
+    <div class="container">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default wow slideInLeft" data-wow-duration="0.2s" data-wow-delay="0.4s">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="name pull-left">Projekt Bank</span>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navigation-home"><a href="#">Strona główna</a></li>
+              <li class="navigation-administrator"><a href="#">Administrator</a></li>
+              <li class="navigation-klient"><a href="#">Klient</a></li>
+              <li class="navigation-uslugi"><a href="#">Usługi</a></li>
+              <li class="navigation-kontakt"><a href="#">Kontakt</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <section id="logowanie">
+      <div class="container">
+        <div id="logowanie-inner">
+          <div class="row">
+            <div class="col-md-3 wow slideInLeft text-left" data-wow-duration="0.2s" data-wow-delay="0.4s">
+              <div class="padding10">
+                <button type="button" class="btn btn-success btn-block squareBtn tl">
+                  <span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
+                </button>
+                <button type="button" class="btn btn-info btn-block squareBtn tl">
+                  <span class="glyphicon glyphicon-user"></span> Zarejestruj klienta
+                </button>
+                <button type="button" class="btn btn-info btn-block squareBtn tl">
+                  <span class="glyphicon glyphicon-time"></span> Historia operacji
+                </button>
+                <button type="button" class="btn btn-info btn-block squareBtn tl">
+                  <span class="glyphicon glyphicon-calendar"></span> Kalendarz
+                </button><br /><br />
+                <button type="button" class="btn btn-warning btn-block squareBtn tl">
+                  <span class="glyphicon glyphicon-cog"></span> Ustawienia konta
+                </button>
+                <button type="button" class="btn btn-danger btn-block squareBtn tl">
+                  <span class="glyphicon glyphicon-log-out"></span> Wyloguj
+                </button>
+              </div>
+            </div>
+            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
+              <div class="padding10">
+                <div class="floatRight">
+                  <button type="button" class="btn btn-info squareBtn tl">
+                    <span class="glyphicon glyphicon-home"></span> Pulpit
+                  </button>
+                  <button type="button" class="btn btn-success squareBtn tl">
+                    <span class="glyphicon glyphicon-info-sign"></span> Oszczędności
+                  </button>
+                  <button type="button" class="btn btn-info squareBtn tl">
+                    <span class="glyphicon glyphicon-euro"></span> Kredyty
+                  </button>
+                  <button type="button" class="btn btn-info squareBtn tl">
+                    <span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek
+                  </button>
+                  <button type="button" class="btn btn-info squareBtn tl">
+                    <span class="glyphicon glyphicon-transfer"></span> Historia
+                  </button>
+                  <button type="button" class="btn btn-warning squareBtn tl">
+                    <span class="glyphicon glyphicon-edit"></span> Edycja danych
+                  </button>
+                </div>
+
+                <table class="table" style="margin-top: 80px;">
+                  <thead class="thead-inverse color-info">
+                    <tr>
+                      <th>#</th>
+                      <th>Nazwa lokaty</th>
+                      <th>Oprocentowanie</th>
+                      <th>Aktualna kwota</th>
+                      <th>Kwota pocztkowa</th>
+                      <th>Data rozpoczęcia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
+                    </tr>
+                      <tr>
+                      <th scope="row">2</th>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="footer" class="wow slideInLeft" data-wow-duration="0.2s" data-wow-delay="0.4s">
+        <div class="container">
+          <div id="footer-inner">
+            <div class="row">
+              &copy; 2016
+            </div> 
+          </div>
+        </div>
+    </section>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
