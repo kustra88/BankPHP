@@ -8,7 +8,7 @@ body { background: url('../img/backgrounds/bg_light.png') repeat repeat; font-fa
 .padding10 { padding: 10px; }
 .color-info { background: #5bc0de; color: #fff; font-size: 20px; }
 .tl { text-align: left !important; }
-
+.floatRight { float: right; }
 
 /* navbar */
 .navbar { margin-top: 20px; }
