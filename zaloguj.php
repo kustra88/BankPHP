@@ -30,7 +30,7 @@
 			
 			unset($_SESSION['blad']); // jesli udalo sie zalogowac to wywal zmienną
 			$rezultat->free(); //lub close() lub free_result(); zwalnianie 
-			header('Location:glowna.php'); //nazwa strony glownej !!!
+			header('Location:administrator.html'); //nazwa strony glownej !!!
 			
 		}else{
 			$_SESSION['blad']='<span style="color:red">Nieprawidłowy login lub hasło!</span>';
