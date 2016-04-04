@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PULPIT | Projekt programistyczny - bank PHP</title>
+    <title>KREDYTY | Projekt programistyczny - bank PHP</title>
 
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -78,13 +78,13 @@
             <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
               <div class="padding10">
                 <div class="floatRight">
-                  <button type="button" class="btn btn-success squareBtn tl">
+                  <button type="button" class="btn btn-info squareBtn tl">
                     <span class="glyphicon glyphicon-home"></span> Pulpit
                   </button>
                   <button type="button" class="btn btn-info squareBtn tl">
                     <span class="glyphicon glyphicon-info-sign"></span> Oszczędności
                   </button>
-                  <button type="button" class="btn btn-info squareBtn tl">
+                  <button type="button" class="btn btn-success squareBtn tl">
                     <span class="glyphicon glyphicon-euro"></span> Kredyty
                   </button>
                   <button type="button" class="btn btn-info squareBtn tl">
@@ -97,62 +97,52 @@
                     <span class="glyphicon glyphicon-edit"></span> Edycja danych
                   </button>
                 </div>
-
-                <table class="table table-hover" style="margin-top: 80px;">
+                <h1 style="margin-top: 80px;">Aktualne kredyty:</h1>
+                <table class="table">
+                  <thead class="thead-inverse color-info">
+                    <tr>
+                      <th>Nr</th>
+                      <th>Pozostała kwota</th>
+                      <th>Pozostałe raty</th>
+                      <th>Oprocentowanie</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">IMIĘ:</th>
-                      <td></td>
+                      <th scope="row">1</th>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
                     </tr>
-                    <tr>
-                      <th scope="row">NAZWISKO:</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">PESEL:</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">DATA URODZENIA:</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">RACHUNEK:</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">SALDO RACHUNKU:</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">WPŁATA:</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">WYPŁATA:</th>
-                      <td></td>
+                      <tr>
+                      <th scope="row">2</th>
+                      <td>test</td>
+                      <td>test</td>
+                      <td>test</td>
                     </tr>
                   </tbody>
                 </table><br />
 
-                <h1>Przelew środków:</h1>
+                <h1>Nowy kredyt:</h1>
                 <table class="table table-hover">
                   <tbody>
                     <tr>
-                      <th scope="row">RACHUNEK ODBIORCY:</th>
+                      <th scope="row">KWOTA:</th>
                       <td></td>
                     </tr>
                     <tr>
-                      <th scope="row">KWOTA:</th>
+                      <th scope="row">ILOŚĆ RAT:</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">OPROCENTOWANIE:</th>
                       <td></td>
                     </tr>
                   </tbody>
                 </table>
                 <button type="button" class="btn btn-success squareBtn tl">
-                  <span class="glyphicon glyphicon-ok"></span> WYKONAJ PRZELEW
+                  <span class="glyphicon glyphicon-ok"></span> WYKONAJ
                 </button>
-
-
 
 
               </div>
