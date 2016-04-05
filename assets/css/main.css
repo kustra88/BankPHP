@@ -10,6 +10,7 @@ body { background: url('../img/backgrounds/bg_light.png') repeat repeat; font-fa
 .tl { text-align: left !important; }
 .floatRight { float: right; }
 .logoutBtn:hover { text-decoration: none; }
+.marginTop5 { margin-top: 5px; }
 
 /* navbar */
 .navbar { margin-top: 20px; }

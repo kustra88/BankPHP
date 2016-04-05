@@ -1,0 +1,22 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^administrator-logowanie?$ admin-login.php [L]
+RewriteRule ^klient-logowanie?$ client-login.php [L]
+RewriteRule ^administrator?$ admin.php [L]
+RewriteRule ^klient?$ client.php [L]
+RewriteRule ^uslugi?$ services.php [L]
+RewriteRule ^kontakt?$ contact.php [L]
+RewriteRule ^loginAdmin?$ loginFormAdmin.php [L]
+RewriteRule ^admin?$ administrator.php [L]
+RewriteRule ^wyloguj?$ logout.php [L]
+RewriteRule ^administrator-pulpit?$ dashboard.php [L]
+RewriteRule ^administrator-oszczednosci?$ savings.php [L]
+RewriteRule ^administrator-kredyty?$ loans.php [L]
+RewriteRule ^administrator-nowy-rachunek?$ new-bill.php [L]
+RewriteRule ^administrator-historia-operacji?$ history.php [L]
+RewriteRule ^administrator-edycja-danych?$ edit.php [L]
+
+
+
