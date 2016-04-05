@@ -7,7 +7,7 @@
 
  	<head>
  		<?php include 'include/head.php'; ?>
-  		<title>USŁUGI | Projekt programistyczny - bank PHP</title>
+  		<title>HISTORIA | Projekt programistyczny - bank PHP</title>
   	</head>
 
  	<body class="<?=$bodyId;?>">
@@ -73,62 +73,41 @@
 
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 			              	<div class="padding10">
-			                	<h1>Wyszukaj klienta</h1>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Imię" aria-describedby="sizing-addon2">
-			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Nazwisko" aria-describedby="sizing-addon2">
-			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="PESEL" aria-describedby="sizing-addon2">
-			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Data urodzenia" aria-describedby="sizing-addon2">
-			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Numer konta" aria-describedby="sizing-addon2">
-			                	</div><br>
-				                <button type="button" class="btn btn-info squareBtn btn-lg">
-				                  <span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
-				                </button><br /><br /><br /><br />
+			                	<div class="floatRight">
+			                		<a href="administrator-pulpit" class="logoutBtn">
+				                  		<button type="button" class="btn btn-info squareBtn tl">
+				                    		<span class="glyphicon glyphicon-home"></span> Pulpit
+				                  		</button>
+			                  		</a>
+			                  		<a href="administrator-oszczednosci" class="logoutBtn">
+				                  		<button type="button" class="btn btn-info squareBtn tl">
+				                    		<span class="glyphicon glyphicon-info-sign"></span> Oszczędności
+				                  		</button>
+			                  		</a>
+			                  		<a href="administrator-kredyty" class="logoutBtn">
+				                  		<button type="button" class="btn btn-info squareBtn tl">
+				                    		<span class="glyphicon glyphicon-euro"></span> Kredyty
+				                  		</button>
+			                  		</a>
+			                  		<a href="administrator-nowy-rachunek" class="logoutBtn">
+				                  		<button type="button" class="btn btn-info squareBtn tl">
+				                    		<span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek
+				                  		</button>
+			                  		</a>
+			                  		<a href="administrator-historia-operacji" class="logoutBtn">
+				                  		<button type="button" class="btn btn-success squareBtn tl">
+				                    		<span class="glyphicon glyphicon-transfer"></span> Historia
+				                  		</button>
+			                  		</a>
+			                  		<a href="administrator-edycja-danych" class="logoutBtn">
+				                  		<button type="button" class="btn btn-warning squareBtn tl">
+				                    		<span class="glyphicon glyphicon-edit"></span> Edycja danych
+				                  		</button>
+			                  		</a>
+			                	</div>
 
-				                <h1>wyniki: </h1>
-				                <table class="table">
-				                  	<thead class="thead-inverse color-info">
-				                    	<tr>
-				                      		<th>#</th>
-				                      		<th>Imię</th>
-				                      		<th>Nazwisko</th>
-				                      		<th>PESEL</th>
-				                      		<th>Data urodzenia</th>
-				                      		<th>Numer konta</th>
-				                    	</tr>
-				                  	</thead>
-				                  	<tbody>
-				                    	<tr>
-				                      		<th scope="row">1</th>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                    	</tr>
-				                      	<tr>
-				                      		<th scope="row">2</th>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                    	</tr>
-				                  	</tbody>
-				                </table>
+								<h1 style="margin-top:80px;">Ostatnie transakcje: </h1>
+								
 				            </div>
 				        </div>
 	          		</div>
