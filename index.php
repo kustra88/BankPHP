@@ -1,32 +1,48 @@
-<?php
-session_start();
+<?php include 'include/setBodyId.php'; ?>
+<!DOCTYPE html>
+<html lang="pl">
 
-if(isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==true))
-{
-	header('Location: gra.php');
-	exit(); // opuszczamy plik wykonuje sie tylko header
-	}
-?>
-<!DOCTYPE HTML> 
+ 	<head>
+ 		<?php include 'include/head.php'; ?>
+  		<title>STRONA GŁÓWNA | Projekt programistyczny - bank PHP</title>
+  	</head>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">  
+ 	<body class="<?=$bodyId;?>">
+ 		<?php include 'include/mainNavigation.php'; ?>
 
-<head>  
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" /> 
-<title>Panel logowania</title>
-</head>
-<body> 
+ 		<!-- content -->
+	    <section id="logowanie">
+	    	<div class="container">
+	        	<div id="logowanie-inner">
+	        		<div class="row">
+	    				<div class="col-md-6 text-center wow slideInLeft" data-wow-duration="0.3s" data-wow-delay="0.5s">
+	         				<img src="assets/img/other/skarbonka.png" class="skarbonka" style="max-width: 57%; opacity: 0.5;" /> 
+	         			</div>
+	         			<div class="col-md-6 text-center wow slideInRight" data-wow-duration="0.3s" data-wow-delay="0.5s">
+	         				<div class="padding10 text-left">
+		         				<h1>autorzy projektu:</h1>
+		         				<ul style="list-style: none;">
+		         					<li><h4>Piotr Kustra,</h4></li>
+		         					<li><h4>Vladyslav Dzenziur,</h4></li>
+		         					<li><h4>Aron Zieliński,</h4></li>
+		         					<li><h4>Michał Majewski,</h4></li>
+		         					<li><h4>Dawid Majdański,</h4></li>
+		         					<li><h4>Krzysztof Dębowski,</h4></li>
+		         					<li><h4>Michał Furtak,</h4></li>
+		         					<li><h4>Damian Skiba</h4></li>
+		         				</ul>
+	         				</div>
+	        			</div>
+	      			</div>
+	    		</div>
+	    	</div>
+	    </section>
+ 		<!-- /content -->
 
-	<form action="zaloguj.php" method="post">
-	Login: <br/><input type="text" name="login"/><br/>
-	Hasło: <br/><input type="password" name="haslo"/><br/></br>
-	<input type="submit" value="Zaloguj się"/>
-	</form>
-	
-<?php
-	if(isset($_SESSION['blad'])) echo $_SESSION['blad'];
-?>
-</body>  
+ 		<?php 
+ 			include 'include/footer.php'; 
+ 			include 'include/scripts.php'; 
+ 		?>
+	</body>
 
 </html>
