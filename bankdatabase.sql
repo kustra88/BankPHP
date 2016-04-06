@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Mar 2016, 15:18
+-- Czas generowania: 06 Kwi 2016, 20:09
 -- Wersja serwera: 5.6.24
 -- Wersja PHP: 5.6.8
 
@@ -23,6 +23,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `historia`
+--
+
+CREATE TABLE IF NOT EXISTS `historia` (
+  `id_pracownika` int(11) NOT NULL,
+  `data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `klient`
 --
 
@@ -32,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `klient` (
   `nazwisko` text COLLATE utf8_polish_ci NOT NULL,
   `pesel` decimal(12,0) NOT NULL,
   `data_urodzenia` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `klient`
@@ -42,7 +53,10 @@ INSERT INTO `klient` (`id_klienta`, `imie`, `nazwisko`, `pesel`, `data_urodzenia
 (1, 'Astryda', 'Bujanowska', '81122772484', '1991-02-25'),
 (2, 'Urszula', 'Nowrot', '33303752427', '1976-05-14'),
 (3, 'Blanka', 'Wojcińska', '88573722317', '1967-11-26'),
-(4, 'Gertruda', 'Pyczek', '33607151172', '1983-10-04');
+(4, 'Gertruda', 'Pyczek', '33607151172', '1983-10-04'),
+(5, 'Emil', 'Niemyt', '14100883811', '1993-06-24'),
+(6, 'Tomasz', 'Jonik', '14100873761', '1989-07-19'),
+(7, 'Jędrzej', 'Dratwiński', '14100761601', '1988-03-14');
 
 -- --------------------------------------------------------
 
@@ -58,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `konto` (
   `id_kredytu` int(11) DEFAULT NULL,
   `data_ot` datetime NOT NULL,
   `data_zm` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `konto`
@@ -68,7 +82,10 @@ INSERT INTO `konto` (`id_klienta`, `nr_konta`, `saldo`, `id_lokaty`, `id_kredytu
 (1, '5434984273348100125446496', '15000', NULL, NULL, '2015-03-15 15:36:00', NULL),
 (2, '1234984573349100094229494', '35000', NULL, NULL, '2013-08-15 08:21:23', NULL),
 (3, '3234984573342100194229488', '9000', 1, NULL, '2014-01-12 18:23:44', NULL),
-(4, '1234984573349100094229494', '35000', NULL, 1, '2013-08-15 08:21:23', NULL);
+(4, '1234984573349100094229494', '35000', NULL, 1, '2013-08-15 08:21:23', NULL),
+(5, '3234984573342100194229489', '200000', NULL, NULL, '2015-12-14 10:00:00', NULL),
+(6, '3234984573342100194229123', '50000', 2, NULL, '2015-09-06 13:26:00', NULL),
+(7, '3234984573334100194221245', '1250', NULL, 2, '2016-04-04 14:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -82,14 +99,15 @@ CREATE TABLE IF NOT EXISTS `kredyt` (
   `oprocentowanie` decimal(5,2) NOT NULL,
   `raty` int(11) NOT NULL,
   `kwota_raty` decimal(10,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `kredyt`
 --
 
 INSERT INTO `kredyt` (`id_kredytu`, `kwota`, `oprocentowanie`, `raty`, `kwota_raty`) VALUES
-(1, '4000.00', '5.00', 24, '600.00');
+(1, '4000.00', '5.00', 24, '600.00'),
+(2, '50000.00', '2.00', 25, '330.00');
 
 -- --------------------------------------------------------
 
@@ -104,14 +122,15 @@ CREATE TABLE IF NOT EXISTS `lokaty` (
   `kwota_pocz` decimal(10,2) NOT NULL,
   `kwota` decimal(10,2) NOT NULL,
   `data_pocz` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `lokaty`
 --
 
 INSERT INTO `lokaty` (`id_lokaty`, `nazwa`, `oprocentowanie`, `kwota_pocz`, `kwota`, `data_pocz`) VALUES
-(1, 'Odsetkomat', '2.50', '10000.00', '10004.41', '2016-03-01 15:00:00');
+(1, 'Odsetkomat', '2.50', '10000.00', '10004.41', '2016-03-01 15:00:00'),
+(2, 'Mała Lokata', '2.00', '3000.00', '3314.25', '2015-10-12 11:18:29');
 
 -- --------------------------------------------------------
 
@@ -157,6 +176,12 @@ INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `pin`, `data_logow
 --
 
 --
+-- Indexes for table `historia`
+--
+ALTER TABLE `historia`
+  ADD UNIQUE KEY `id_log` (`id_pracownika`);
+
+--
 -- Indexes for table `klient`
 --
 ALTER TABLE `klient`
@@ -191,28 +216,39 @@ ALTER TABLE `pracownik`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `historia`
+--
+ALTER TABLE `historia`
+  MODIFY `id_pracownika` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT dla tabeli `klient`
 --
 ALTER TABLE `klient`
-  MODIFY `id_klienta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_klienta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT dla tabeli `konto`
 --
 ALTER TABLE `konto`
-  MODIFY `id_klienta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_klienta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT dla tabeli `kredyt`
 --
 ALTER TABLE `kredyt`
-  MODIFY `id_kredytu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_kredytu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `lokaty`
 --
 ALTER TABLE `lokaty`
-  MODIFY `id_lokaty` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_lokaty` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `historia`
+--
+ALTER TABLE `historia`
+ADD CONSTRAINT `id_logh` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`);
 
 --
 -- Ograniczenia dla tabeli `klient`
