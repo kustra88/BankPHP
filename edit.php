@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
+	{
+		header('Location: administrator-logowanie');
+		exit(); // opuszczamy plik wykonuje sie tylko header
+	}
 	include 'include/setBodyId.php'; 
 ?>
 <!DOCTYPE html>

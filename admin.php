@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
+	{
+		header('Location: administrator-logowanie');
+		exit(); // opuszczamy plik wykonuje sie tylko header
+	}
 	include 'include/setBodyId.php'; 
 ?>
 <!DOCTYPE html>
@@ -7,7 +12,7 @@
 
  	<head>
  		<?php include 'include/head.php'; ?>
-  		<title>USŁUGI | Projekt programistyczny - bank PHP</title>
+  		<title>ADMINISTRATOR | Projekt programistyczny - bank PHP</title>
   	</head>
 
  	<body class="<?=$bodyId;?>">

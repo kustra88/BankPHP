@@ -4,7 +4,7 @@
 	{
 		header('Location: administrator');
 		exit(); // opuszczamy plik wykonuje sie tylko header
-		}
+	}
 	include 'include/setBodyId.php'; 
 ?>
 <!DOCTYPE html>
