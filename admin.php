@@ -1,11 +1,12 @@
 <?php
+	include 'include/setBodyId.php'; 
+	include 'include/db.php'; 
 	session_start();
 	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
 	{
 		header('Location: administrator-logowanie');
 		exit(); // opuszczamy plik wykonuje sie tylko header
 	}
-	include 'include/setBodyId.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -103,7 +104,7 @@
 				                  <span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
 				                </button><br /><br /><br /><br />
 
-				                <h1>wyniki: </h1>
+				                <h1>lista wszystkich klientów: </h1>
 				                <table class="table">
 				                  	<thead class="thead-inverse color-info">
 				                    	<tr>
@@ -116,22 +117,26 @@
 				                    	</tr>
 				                  	</thead>
 				                  	<tbody>
-				                    	<tr>
-				                      		<th scope="row">1</th>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                    	</tr>
-				                      	<tr>
-				                      		<th scope="row">2</th>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                    	</tr>
+					                    <? 
+					                    	if ($conn) { 
+						                    	mysql_select_db('logowanie');
+												mysql_query("SET NAMES utf8");
+						                    	$result = mysql_query("SELECT * FROM klient");
+						                    	$i = 1;
+						                      	while($row = mysql_fetch_array($result)) {
+						                      		$resultKonto = mysql_fetch_array(mysql_query("SELECT id_klienta, nr_konta FROM konto WHERE id_klienta = '".$row['id_klienta']."' "));
+						                      		echo '<tr>';
+					                      			echo '<th scope="row">'.$i.'</th>';
+					                      			echo '<td>'.$row['imie'].'</td>';
+					                      			echo '<td>'.$row['nazwisko'].'</td>';
+					                      			echo '<td>'.$row['pesel'].'</td>';
+					                      			echo '<td>'.$row['data_urodzenia'].'</td>';
+					                      			echo '<td>'.$resultKonto['nr_konta'].'</td>';
+					                    			echo '</tr>';
+						                        	$i++;
+						                      	}
+					                  		}
+					                    ?>
 				                  	</tbody>
 				                </table>
 				            </div>
