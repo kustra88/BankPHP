@@ -1,11 +1,13 @@
 <?php
+	include 'include/setBodyId.php'; 
+	include 'include/db.php'; 
 	session_start();
 	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
 	{
 		header('Location: administrator-logowanie');
 		exit(); // opuszczamy plik wykonuje sie tylko header
 	}
-	include 'include/setBodyId.php'; 
+	$idKlienta = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -78,32 +80,32 @@
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 			             	<div class="padding10">
 			                	<div class="floatRight">
-			                		<a href="administrator-pulpit" class="logoutBtn">
+			                		<?php echo '<a href="administrator-pulpit?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-success squareBtn tl">
 				                    		<span class="glyphicon glyphicon-home"></span> Pulpit
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-oszczednosci" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-oszczednosci?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-info-sign"></span> Oszczędności
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-kredyty" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-kredyty?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-euro"></span> Kredyty
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-nowy-rachunek" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-nowy-rachunek?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-historia-operacji" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-historia-operacji?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-transfer"></span> Historia
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-edycja-danych" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-edycja-danych?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-warning squareBtn tl">
 				                    		<span class="glyphicon glyphicon-edit"></span> Edycja danych
 				                  		</button>
@@ -112,37 +114,61 @@
 
 				                <table class="table table-hover" style="margin-top: 80px;">
 				                  	<tbody>
+					                    <? 
+					                    	if ($conn) { 
+						                    	mysql_select_db('logowanie');
+												mysql_query("SET NAMES utf8");
+						                    	$result = mysql_fetch_array(mysql_query("SELECT * FROM klient WHERE id_klienta = '".$idKlienta."' "));
+						                    	$resultKonto = mysql_fetch_array(mysql_query("SELECT id_klienta, nr_konta, saldo FROM konto WHERE id_klienta = '".$idKlienta."' "));
+					                  		}
+					                    ?>
 				                    	<tr>
 				                      		<th scope="row">IMIĘ:</th>
-				                     		<td></td>
+				                     		<td>
+				                     			<?php
+				                     				echo $result['imie'];
+				                     			?>
+				                     		</td>
 				                    	</tr>
 				                    	<tr>
 				                     		<th scope="row">NAZWISKO:</th>
-				                      		<td></td>
+				                      		<td>
+				                     			<?php
+				                     				echo $result['nazwisko'];
+				                     			?>
+				                      		</td>
 				                    	</tr>
 				                    	<tr>
 				                      		<th scope="row">PESEL:</th>
-				                      		<td></td>
+				                      		<td>
+				                     			<?php
+				                     				echo $result['pesel'];
+				                     			?>				                      			
+				                      		</td>
 				                    	</tr>
 				                    	<tr>
 				                      		<th scope="row">DATA URODZENIA:</th>
-				                      		<td></td>
+				                      		<td>
+				                     			<?php
+				                     				echo $result['data_urodzenia'];
+				                     			?>				                      			
+				                      		</td>
 				                    	</tr>
 				                    	<tr>
 				                      		<th scope="row">RACHUNEK:</th>
-				                      		<td></td>
+				                      		<td>
+				                     			<?php
+				                     				echo $resultKonto['nr_konta'];
+				                     			?>					                      			
+				                      		</td>
 				                    	</tr>
 				                    	<tr>
 				                      		<th scope="row">SALDO RACHUNKU:</th>
-				                      		<td></td>
-				                    	</tr>
-				                    	<tr>
-				                      		<th scope="row">WPŁATA:</th>
-				                      		<td></td>
-				                    	</tr>
-				                    	<tr>
-				                      		<th scope="row">WYPŁATA:</th>
-				                      		<td></td>
+				                      		<td>
+				                     			<?php
+				                     				echo $resultKonto['saldo'];
+				                     			?>				                      			
+				                      		</td>
 				                    	</tr>
 				                  	</tbody>
 				                </table><br />
