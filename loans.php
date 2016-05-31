@@ -112,26 +112,29 @@
 			                  		</a>
 			                	</div>
 
-								<h1 style="margin-top: 80px;">Aktualne kredyty:</h1>
-				                <table class="table">
-					                <? 
-					                    if ($conn) { 
-						                    mysql_select_db('logowanie');
-											mysql_query("SET NAMES utf8");
-						                    $result = mysql_fetch_array(mysql_query("SELECT id_klienta, id_kredytu FROM konto WHERE id_klienta = '".$idKlienta."' "));
-						                    $kredyt = mysql_query("SELECT * FROM kredyt WHERE id_kredytu = '".$result['id_kredytu']."' ");
-					                 	}
-					                ?>
-				                  	<thead class="thead-inverse color-info">
-				                    	<tr>
-				                      		<th>Nr</th>
-				                      		<th>Pozostała kwota</th>
-				                      		<th>Pozostałe raty</th>
-				                      		<th>Oprocentowanie</th>
-				                    	</tr>
-				                  	</thead>
-				                  	<tbody>
-				                  	<?php 
+			                	<?php
+
+							        if ($conn) { 
+								        mysql_select_db('logowanie');
+										mysql_query("SET NAMES utf8");
+						                $result = mysql_fetch_array(mysql_query("SELECT id_klienta, id_kredytu FROM konto WHERE id_klienta = '".$idKlienta."' "));
+						                $kredyt = mysql_query("SELECT * FROM kredyt WHERE id_kredytu = '".$result['id_kredytu']."' ");
+							        }
+
+			                		if (mysql_num_rows($kredyt)==0) {
+			                			echo '<h1 style="margin-top: 80px;">Brak kredytów!</h1>';
+			                		} else {
+										echo '<table class="table" style="margin-top: 80px;">';
+							            echo '<thead class="thead-inverse color-info">
+						                    	<tr>
+						                      		<th>Nr</th>
+						                      		<th>Pozostała kwota</th>
+						                      		<th>Pozostałe raty</th>
+						                      		<th>Oprocentowanie</th>
+						                    	</tr>
+						                  	</thead>
+						                  	<tbody>';
+							                  	
 				                  		while($resultKredyt = mysql_fetch_array($kredyt)) {
 					                    	echo '<tr>';
 					                      	echo '	<th scope="row">'.$resultKredyt['id_kredytu'].'</th>';
@@ -140,12 +143,12 @@
 					                      	echo '	<td>'.$resultKredyt['oprocentowanie'].'</td>';
 					                    	echo '</tr>';
 				                    	}
-				                    ?>
-				                  	</tbody>
-				                </table><br />
+
+						                echo '</tbody></table>';
+			                		}
+			                	?><br />
 
 				                <h1>Nowy kredyt:</h1>
-				                
 				                <table class="table table-hover">
 				                  	<tbody>
 				                   		<tr>
