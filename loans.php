@@ -1,11 +1,13 @@
 <?php
+	include 'include/setBodyId.php'; 
+	include 'include/db.php'; 
 	session_start();
 	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
 	{
 		header('Location: administrator-logowanie');
 		exit(); // opuszczamy plik wykonuje sie tylko header
 	}
-	include 'include/setBodyId.php'; 
+	$idKlienta = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -78,32 +80,32 @@
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 			             	<div class="padding10">
 			                	<div class="floatRight">
-			                		<a href="administrator-pulpit" class="logoutBtn">
+			                		<?php echo '<a href="administrator-pulpit?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-home"></span> Pulpit
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-oszczednosci" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-oszczednosci?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-info-sign"></span> Oszczędności
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-kredyty" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-kredyty?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-success squareBtn tl">
 				                    		<span class="glyphicon glyphicon-euro"></span> Kredyty
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-nowy-rachunek" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-nowy-rachunek?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-historia-operacji" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-historia-operacji?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-info squareBtn tl">
 				                    		<span class="glyphicon glyphicon-transfer"></span> Historia
 				                  		</button>
 			                  		</a>
-			                  		<a href="administrator-edycja-danych" class="logoutBtn">
+			                  		<?php echo '<a href="administrator-edycja-danych?id='.$idKlienta.'" class="logoutBtn">'; ?>
 				                  		<button type="button" class="btn btn-warning squareBtn tl">
 				                    		<span class="glyphicon glyphicon-edit"></span> Edycja danych
 				                  		</button>
@@ -112,6 +114,14 @@
 
 								<h1 style="margin-top: 80px;">Aktualne kredyty:</h1>
 				                <table class="table">
+					                <? 
+					                    if ($conn) { 
+						                    mysql_select_db('logowanie');
+											mysql_query("SET NAMES utf8");
+						                    $result = mysql_fetch_array(mysql_query("SELECT id_klienta, id_kredytu FROM konto WHERE id_klienta = '".$idKlienta."' "));
+						                    $kredyt = mysql_query("SELECT * FROM kredyt WHERE id_kredytu = '".$result['id_kredytu']."' ");
+					                 	}
+					                ?>
 				                  	<thead class="thead-inverse color-info">
 				                    	<tr>
 				                      		<th>Nr</th>
@@ -121,22 +131,21 @@
 				                    	</tr>
 				                  	</thead>
 				                  	<tbody>
-				                    	<tr>
-				                      		<th scope="row">1</th>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                    	</tr>
-				                      	<tr>
-				                      		<th scope="row">2</th>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                      		<td>test</td>
-				                    	</tr>
+				                  	<?php 
+				                  		while($resultKredyt = mysql_fetch_array($kredyt)) {
+					                    	echo '<tr>';
+					                      	echo '	<th scope="row">'.$resultKredyt['id_kredytu'].'</th>';
+					                      	echo '	<td>'.$resultKredyt['kwota'].'</td>';
+					                      	echo '	<td>'.$resultKredyt['raty'].'</td>';
+					                      	echo '	<td>'.$resultKredyt['oprocentowanie'].'</td>';
+					                    	echo '</tr>';
+				                    	}
+				                    ?>
 				                  	</tbody>
 				                </table><br />
 
 				                <h1>Nowy kredyt:</h1>
+				                
 				                <table class="table table-hover">
 				                  	<tbody>
 				                   		<tr>
