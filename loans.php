@@ -145,6 +145,7 @@
 				                </table><br />
 
 				                <h1>Nowy kredyt:</h1>
+				                
 				                <table class="table table-hover">
 				                  	<tbody>
 				                   		<tr>
