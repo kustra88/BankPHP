@@ -1,0 +1,27 @@
+// dodawanie wpisu do tabeli konto i kredyt
+		$sql_last_id = "SELECT id_kredytu FROM kredyt WHERE id_kredytu IN (SELECT MAX(id_kredytu) FROM kredyt)";
+		$result = mysqli_query($conn, $sql_last_id);
+		$array = mysqli_fetch_array($result);
+			
+		$last_id = $array["id_kredytu"];
+		$last_id++; 
+	
+		$sql1 = "UPDATE konto SET id_kredytu = '$last_id' WHERE id_klienta = 9";
+		$result = mysqli_query($conn, $sql1);
+	
+		if (!$result)
+			$message = "Błąd bazy danych: ".mysqli_error($conn);
+		else
+		{
+				
+		$sql2 = "INSERT INTO kredyt (id_kredytu, kwota, oprocentowanie, raty, kwota_raty) VALUES ('$last_id', '$db_cash', '$db_proc', '$db_rat', '$db_ratcash')";
+		$result = mysqli_query($conn, $sql2);		
+		
+			if (!$result)
+			    $message = "Błąd bazy danych: ".mysqli_error($conn);
+			else
+			{
+				$add_result = true;
+		 		$message = "Dane dodane poprawnie!";
+			}
+		}
