@@ -1,4 +1,12 @@
-<?php include 'include/setBodyId.php'; ?>
+<?php
+	session_start();
+	if(isset($_SESSION['zalogowany_c']) && ($_SESSION['zalogowany_c']==true))
+	{
+		header('Location: klient');
+		exit(); // opuszczamy plik wykonuje sie tylko header
+		}
+	include 'include/setBodyId.php'; 
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -21,6 +29,9 @@
 	            <div class="col-md-8 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 	              <div class="login-form">
 	                <h1>Panel klienta - logowanie</h1>
+	                <?php
+						if(isset($_SESSION['blad'])) echo $_SESSION['blad'];
+					?>
 	                <form action="loginClient" method="post">
 	                  <div class="form-group ">
 	                    <input type="text" class="form-control" placeholder="Login " id="UserName" name="login">

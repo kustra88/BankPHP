@@ -9,14 +9,27 @@ RewriteRule ^klient?$ client.php [L]
 RewriteRule ^uslugi?$ services.php [L]
 RewriteRule ^kontakt?$ contact.php [L]
 RewriteRule ^loginAdmin?$ loginFormAdmin.php [L]
+RewriteRule ^loginClient?$ loginFormClient.php [L]
 RewriteRule ^admin?$ administrator.php [L]
 RewriteRule ^wyloguj?$ logout.php [L]
+RewriteRule ^klient-wyloguj?$ logout-client.php [L]
 RewriteRule ^administrator-pulpit?$ dashboard.php [L]
 RewriteRule ^administrator-oszczednosci?$ savings.php [L]
 RewriteRule ^administrator-kredyty?$ loans.php [L]
 RewriteRule ^administrator-nowy-rachunek?$ new-bill.php [L]
 RewriteRule ^administrator-historia-operacji?$ history.php [L]
 RewriteRule ^administrator-edycja-danych?$ edit.php [L]
+
+RewriteRule ^dodaj/dodaj-lokate?$ add/lokata.php [L]
+RewriteRule ^dodaj/dodaj-kredyt?$ add/kredyt.php [L]
+RewriteRule ^dodaj/wplata?$ add/wplata.php [L]
+RewriteRule ^dodaj/wyplata?$ add/wyplata.php [L]
+RewriteRule ^dodaj/rachunek?$ add/rachunek.php [L]
+
+RewriteRule ^zarejestruj-klienta?$ register-client.php [L]
+RewriteRule ^podsumowanie?$ register-client-result.php [L]
+RewriteRule ^edycja-podsumowanie?$ edit-client-result.php [L]
+RewriteRule ^historia-operacji?$ history.php [L]
 
 
 
