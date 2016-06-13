@@ -1,10 +1,11 @@
+
 <?php
 	include 'include/setBodyId.php'; 
 	include 'include/db.php'; 
 	session_start();
 	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
 	{
-		header('Location: administrator-logowanie');
+		header('Location: administrator.php');
 		exit(); // opuszczamy plik wykonuje sie tylko header
 	}
 ?>
@@ -13,7 +14,7 @@
 
  	<head>
  		<?php include 'include/head.php'; ?>
-  		<title>ADMINISTRATOR | Projekt programistyczny - bank PHP</title>
+  		<title>Dodaj klienta | Projekt programistyczny - bank PHP</title>
   	</head>
 
  	<body class="<?=$bodyId;?>">
@@ -36,14 +37,14 @@
 	              			<div class="padding10">
 	              				<div class="marginTop5">
 		              				<a href="administrator" class="logoutBtn">
-			                			<button type="button" class="btn btn-success btn-block squareBtn tl">
+			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
 			                  				<span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
 			                			</button>
 		                			</a>
 	                			</div>
 	                			<div class="marginTop5">
-		                			<a href="zarejestruj-klienta" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
+		                			<a href="register-client.php" class="logoutBtn">
+			                			<button type="button" class="btn btn-success btn-block squareBtn tl">
 			                  				<span class="glyphicon glyphicon-user"></span> Zarejestruj klienta
 			                			</button>
 		                			</a>
@@ -66,68 +67,29 @@
 	            		</div>
 
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
+                         <form action="/podsumowanie" method="post">
 			              	<div class="padding10">
-			                	<h1>Wyszukaj klienta</h1>
-			                	<form method="post" action="/administrator-pulpit">
+			                	<h1>Zarejestruj klienta</h1>
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Imię" name="imie" aria-describedby="sizing-addon2">
+			                  		<input type="text" class="form-control" name="reg-name1" placeholder="Imię" aria-describedby="sizing-addon2">
 			                	</div><br>
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Nazwisko" name="nazwisko" aria-describedby="sizing-addon2">
+			                  		<input type="text" class="form-control" name="reg-name2" placeholder="Nazwisko" aria-describedby="sizing-addon2">
 			                	</div><br>
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="PESEL" name="pesel" aria-describedby="sizing-addon2">
+			                  		<input type="text" class="form-control" name="reg-pesel" placeholder="PESEL" aria-describedby="sizing-addon2">
 			                	</div><br>
-		
-					                <button class="btn btn-info squareBtn btn-lg" type="submit">
-					                 Wyszukaj klienta
-					                </button>
+			                	<div class="input-group">
+			                  		<span class="input-group-addon" id="sizing-addon2"></span>
+			                  		<input type="text" class="form-control" name="reg-date" placeholder="Data urodzenia" aria-describedby="sizing-addon2">
+			                	</div><br>
+				                <input class="log-btn" type="submit" value="Dodaj klienta">
+                                <br /><br /><br /><br />
 
 				               
-				                </form>
-				                <br /><br /><br /><br />
-<!--
-				                <h1>lista wszystkich klientów: </h1>
-				                <table class="table table-hover table-pointer">
-				                  	<thead class="thead-inverse color-info">
-				                    	<tr style="color:#fff; cursor: default; ">
-				                      		<th>#</th>
-				                      		<th>Imię</th>
-				                      		<th>Nazwisko</th>
-				                      		<th>PESEL</th>
-				                      		<th>Data urodzenia</th>
-				                      		<th>Numer konta</th>
-				                    	</tr>
-				                  	</thead>
-				                  	<tbody>
--->
-					                    <? 
-					                    	//if ($conn) { 
-						                    //	mysql_select_db('logowanie');
-											//	mysql_query("SET NAMES utf8");
-						                    //	$result = mysql_query("SELECT * FROM klient");
-						                    //	$i = 1;
-						                    //  	while($row = mysql_fetch_array($result)) {
-						                    //  		$resultKonto = mysql_fetch_array(mysql_query("SELECT id_klienta, nr_konta FROM konto WHERE id_klienta = '".$row['id_klienta']."' "));
-						                    //  		echo '<tr class="clickable-row" data-href="/administrator-pulpit?id='.$row['id_klienta'].'" ">';
-					                      	//		echo '<th scope="row">'.$i.'</th>';
-					                      	//		echo '<td>'.$row['imie'].'</td>';
-					                      	//		echo '<td>'.$row['nazwisko'].'</td>';
-					                      	//		echo '<td>'.$row['pesel'].'</td>';
-					                      	//		echo '<td>'.$row['data_urodzenia'].'</td>';
-					                      	//		echo '<td>'.$resultKonto['nr_konta'].'</td>';
-					                    	//		echo '</tr>';
-						                    //  	$i++;
-						                    //  	}
-					                  		//}
-					                    ?>
-					                    <!--
-				                  	</tbody>
-				                </table>
-				                -->
 				            </div>
 				        </div>
 	          		</div>

@@ -57,18 +57,6 @@
 		                			</a>
 	                			</div>
 	                			<div class="marginTop5">
-		                			<a href="kalendarz" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
-			                  				<span class="glyphicon glyphicon-calendar"></span> Kalendarz
-			                			</button>
-		                			</a>
-	                			</div><br /><br />
-	                			<a href="ustawienia" class="logoutBtn">
-		                			<button type="button" class="btn btn-warning btn-block squareBtn tl">
-		                  				<span class="glyphicon glyphicon-cog"></span> Ustawienia konta
-		                			</button>
-	                			</a>
-	                			<div class="marginTop5">
 	 								<a href="wyloguj" class="logoutBtn">
 		 								<button type="button" class="btn btn-danger btn-block squareBtn tl">
 			                				<span class="glyphicon glyphicon-log-out"></span> Wyloguj
@@ -80,39 +68,54 @@
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 			             	<div class="padding10">
 			                	<div class="floatRight">
-			                		<?php echo '<a href="administrator-pulpit?id='.$idKlienta.'" class="logoutBtn">'; ?>
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-home"></span> Pulpit
-				                  		</button>
-			                  		</a>
-			                  		<?php echo '<a href="administrator-oszczednosci?id='.$idKlienta.'" class="logoutBtn">'; ?>
-				                  		<button type="button" class="btn btn-success squareBtn tl">
-				                    		<span class="glyphicon glyphicon-info-sign"></span> Oszczędności
-				                  		</button>
-			                  		</a>
-			                  		<?php echo '<a href="administrator-kredyty?id='.$idKlienta.'" class="logoutBtn">'; ?>
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-euro"></span> Kredyty
-				                  		</button>
-			                  		</a>
-			                  		<?php echo '<a href="administrator-nowy-rachunek?id='.$idKlienta.'" class="logoutBtn">'; ?>
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek
-				                  		</button>
-			                  		</a>
-			                  		<?php echo '<a href="administrator-historia-operacji?id='.$idKlienta.'" class="logoutBtn">'; ?>
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-transfer"></span> Historia
-				                  		</button>
-			                  		</a>
-			                  		<?php echo '<a href="administrator-edycja-danych?id='.$idKlienta.'" class="logoutBtn">'; ?>
-				                  		<button type="button" class="btn btn-warning squareBtn tl">
-				                    		<span class="glyphicon glyphicon-edit"></span> Edycja danych
-				                  		</button>
-			                  		</a>
+
+			                		<?php 
+
+					                    if ($conn && $peselKlienta) { 
+						                    	mysql_select_db('logowanie');
+												mysql_query("SET NAMES utf8");
+						                    	$result = mysql_fetch_array(mysql_query("SELECT * FROM klient WHERE pesel = '".$peselKlienta."' "));
+						                    	$idKlienta = $result['id_klienta'];
+					                  	}
+
+			                			if ( $idKlienta ) {
+				                			echo '<a href="administrator-pulpit?id='.$idKlienta.'" class="logoutBtn">'; 
+					                  		echo '<button type="button" class="btn btn-info squareBtn tl">';
+					                    	echo '	<span class="glyphicon glyphicon-home"></span> Pulpit';
+					                  		echo '</button>';
+				                  			echo '</a>';
+				                  			
+				                  			echo '<a href="administrator-oszczednosci?id='.$idKlienta.'" class="logoutBtn">';
+					                  		echo '<button type="button" class="btn btn-success squareBtn tl">';
+					                    	echo '	<span class="glyphicon glyphicon-info-sign"></span> Oszczędności';
+					                  		echo '</button>';
+				                  			echo '</a>';
+				                  			
+				                  			echo '<a href="administrator-kredyty?id='.$idKlienta.'" class="logoutBtn">';
+					                  		echo '<button type="button" class="btn btn-info squareBtn tl">';
+					                    	echo '	<span class="glyphicon glyphicon-euro"></span> Kredyty';
+					                  		echo '</button>';
+				                  			echo '</a>';
+				                  			
+				                  			echo '<a href="administrator-nowy-rachunek?id='.$idKlienta.'" class="logoutBtn">';
+					                  		echo '<button type="button" class="btn btn-info squareBtn tl">';
+					                    	echo '	<span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek';
+					                  		echo '</button>';
+				                  			echo '</a>';
+				                  		
+				                  			echo '<a href="administrator-edycja-danych?id='.$idKlienta.'" class="logoutBtn">';
+					                  		echo '<button type="button" class="btn btn-warning squareBtn tl">';
+					                    	echo '	<span class="glyphicon glyphicon-edit"></span> Edycja danych';
+					                  		echo '</button>';
+				                  			echo '</a>';
+			                  			}
+			                  		
+			                  		?>
+
 			                	</div>
 
 			                	<?php
+			                		$licznik = 0;
 							        if ($conn) { 
 								        mysql_select_db('logowanie');
 										mysql_query("SET NAMES utf8");
@@ -121,7 +124,7 @@
 							        }
 
 			                		if (mysql_num_rows($lokata)==0) {
-			                			echo '<h1 style="margin-top: 80px;">Brak lokat!</h1>';
+			                			echo '<h1>Brak lokat!</h1>';
 			                		} else {
 										echo '<table class="table" style="margin-top: 80px;">';
 							                
@@ -138,8 +141,9 @@
 						                  	<tbody>';
 							                  	
 							                while($resultLokata = mysql_fetch_array($lokata)) {
+							                	$licznik++;
 								               	echo '<tr>';
-								               	echo '	<th scope="row">'.$resultLokata['id_lokaty'].'</th>';
+								               	echo '	<th scope="row">'.$licznik.'</th>';
 								               	echo '	<th scope="row">'.$resultLokata['nazwa'].'</th>';
 								               	echo '	<th scope="row">'.$resultLokata['oprocentowanie'].'</th>';
 								               	echo '	<th scope="row">'.$resultLokata['kwota'].'</th>';
@@ -152,26 +156,16 @@
 			                	?>
 				                <br />
 
-				                <h1>Nowa lokata:</h1>
-				                <table class="table table-hover">
-				                	<tbody>
-				                    	<tr>
-				                      		<th scope="row">NAZWA LOKATY:</th>
-				                      		<td></td>
-				                    	</tr>
-				                    	<tr>
-				                      		<th scope="row">OPROCENTOWANIE:</th>
-				                      		<td></td>
-				                    	</tr>
-				                    	<tr>
-				                      		<th scope="row">KWOTA POCZĄTKOWA:</th>
-				                      		<td></td>
-				                    	</tr>
-				                  	</tbody>
-				                </table>
-				                <button type="button" class="btn btn-success squareBtn tl">
-				                  	<span class="glyphicon glyphicon-ok"></span> WYKONAJ
-				                </button>
+				                <?php 
+				                	if ( $licznik ==0 ) {
+				                		echo '
+							                <a data-toggle="modal" data-target="#dodajLokate" href="#dodajLokate"  type="button" class="btn btn-success squareBtn tl">
+							                  	<span class="glyphicon glyphicon-ok"></span> DODAJ NOWĄ LOKATĘ
+							                </a>
+				                		';
+				                	}
+				                ?>
+
 		              		</div>
 	            		</div>
 	          		</div>
@@ -184,6 +178,69 @@
  			include 'include/footer.php'; 
  			include 'include/scripts.php'; 
  		?>
+
+
+	    <!-- modals -->
+	    <div class="modal fade" id="dodajLokate" tabindex="-1" role="dialog" aria-labelledby="dodajLokate" aria-hidden="true">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+	                    <h4 class="modal-title" id="myModalLabel">Dodaj lokate</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <p>
+	                      <form action="/dodaj/dodaj-lokate" method="post" id="addLokata" name="addLokata" class="addLokata">
+
+	                        <div class="form-group">
+	                          <label for="inputNazwa">Nazwa lokaty:</label>
+	                          <input type="nazwa" class="form-control" id="nazwa" name="nazwa" required data-fv-notempty-message="Pole nie może być puste!">
+	                        </div>
+	                        <div class="form-group">
+	                          <label for="inputOprocentowanie">Oprocentowanie:</label>
+	                          <input type="oprocentowanie" class="form-control" id="oprocentowanie" name="oprocentowanie" required data-fv-notempty-message="Pole nie może być puste!">
+	                        </div>
+	                        <div class="form-group">
+	                          <label for="inputOpis">Kwota początkowa:</label>
+	                          <input type="kwota" class="form-control" id="kwota" name="kwota" required data-fv-notempty-message="Pole nie może być puste!">
+	                        </div>
+	                        <input type="hidden" id="id_klienta" name="id_klienta" value='<?php echo $idKlienta; ?>'>
+
+
+	                        <input type="submit" value="Dodaj lokate" name="submitLokata" id="submitLokata" class="btn btn-success addLokataBtn"/>
+	                        <b class="hidden_text">Lokata dodana!</b>
+	                      </form>
+	                    </p>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-primary" id="addLokataClose" data-dismiss="modal">Zamknij</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <script>
+	    $(".modal-body form.addLokata").submit(function(e) {
+	      var url = "/dodaj/dodaj-lokate"; 
+	        $.ajax({
+	          type: "POST",
+	          url: url,
+	          data: $(this).serialize(), 
+	          success: function(data) {
+	            $('.hidden_text').css('display', 'block');
+	            $('.addLokataBtn').css('display', 'none');
+	            $('#addLokataClose').click(function() {
+	              window.location.reload();
+	            });        
+	          }
+	        });
+	        e.preventDefault(); 
+	    });
+	  </script>
+
 	</body>
 
 </html>
+
+
+
