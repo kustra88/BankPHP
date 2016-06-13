@@ -5,6 +5,7 @@
 		header('Location: administrator-logowanie');
 		exit(); // opuszczamy plik wykonuje sie tylko header
 	}
+	include 'include/db.php';
 	include 'include/setBodyId.php'; 
 ?>
 <!DOCTYPE html>
@@ -35,7 +36,7 @@
 	              			<div class="padding10">
 	              				<div class="marginTop5">
 		              				<a href="administrator" class="logoutBtn">
-			                			<button type="button" class="btn btn-success btn-block squareBtn tl">
+			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
 			                  				<span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
 			                			</button>
 		                			</a>
@@ -49,23 +50,11 @@
 	                			</div>
 	                			<div class="marginTop5">
 		                			<a href="historia-operacji" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
+			                			<button type="button" class="btn btn-success btn-block squareBtn tl">
 			                  				<span class="glyphicon glyphicon-time"></span> Historia operacji
 			                			</button>
 		                			</a>
 	                			</div>
-	                			<div class="marginTop5">
-		                			<a href="kalendarz" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
-			                  				<span class="glyphicon glyphicon-calendar"></span> Kalendarz
-			                			</button>
-		                			</a>
-	                			</div><br /><br />
-	                			<a href="ustawienia" class="logoutBtn">
-		                			<button type="button" class="btn btn-warning btn-block squareBtn tl">
-		                  				<span class="glyphicon glyphicon-cog"></span> Ustawienia konta
-		                			</button>
-	                			</a>
 	                			<div class="marginTop5">
 	 								<a href="wyloguj" class="logoutBtn">
 		 								<button type="button" class="btn btn-danger btn-block squareBtn tl">
@@ -78,40 +67,26 @@
 
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 			              	<div class="padding10">
-			                	<div class="floatRight">
-			                		<a href="administrator-pulpit" class="logoutBtn">
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-home"></span> Pulpit
-				                  		</button>
-			                  		</a>
-			                  		<a href="administrator-oszczednosci" class="logoutBtn">
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-info-sign"></span> Oszczędności
-				                  		</button>
-			                  		</a>
-			                  		<a href="administrator-kredyty" class="logoutBtn">
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-euro"></span> Kredyty
-				                  		</button>
-			                  		</a>
-			                  		<a href="administrator-nowy-rachunek" class="logoutBtn">
-				                  		<button type="button" class="btn btn-info squareBtn tl">
-				                    		<span class="glyphicon glyphicon-credit-card"></span> Nowy rachunek
-				                  		</button>
-			                  		</a>
-			                  		<a href="administrator-historia-operacji" class="logoutBtn">
-				                  		<button type="button" class="btn btn-success squareBtn tl">
-				                    		<span class="glyphicon glyphicon-transfer"></span> Historia
-				                  		</button>
-			                  		</a>
-			                  		<a href="administrator-edycja-danych" class="logoutBtn">
-				                  		<button type="button" class="btn btn-warning squareBtn tl">
-				                    		<span class="glyphicon glyphicon-edit"></span> Edycja danych
-				                  		</button>
-			                  		</a>
-			                	</div>
+								<h2>Pracownik - <b><?php echo $_SESSION['imie'].' '.$_SESSION['nazwisko']; ?></b> - Ostatnie operacje: </h2><br />
 
-								<h1 style="margin-top:80px;">Ostatnie transakcje: </h1>
+
+
+								<?php
+							
+
+									if ( $conn ) {
+						                mysql_select_db('logowanie');
+										mysql_query("SET NAMES utf8");
+										$licznik = 1;
+										$sql = mysql_query('SELECT * FROM historia WHERE id_pracownika = '.$_SESSION['id_pracownika'].' ORDER BY data desc ');
+										while ($row = mysql_fetch_array($sql)) {
+
+											echo $licznik . '. ' . $row['data'] . ', ' . $row['operacja'] . '<br />'; 
+											$licznik++;
+										}
+									}
+
+								?>
 								
 				            </div>
 				        </div>

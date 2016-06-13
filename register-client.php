@@ -1,4 +1,5 @@
-﻿<?php
+
+<?php
 	include 'include/setBodyId.php'; 
 	include 'include/db.php'; 
 	session_start();
@@ -56,18 +57,6 @@
 		                			</a>
 	                			</div>
 	                			<div class="marginTop5">
-		                			<a href="kalendarz" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
-			                  				<span class="glyphicon glyphicon-calendar"></span> Kalendarz
-			                			</button>
-		                			</a>
-	                			</div><br /><br />
-	                			<a href="ustawienia" class="logoutBtn">
-		                			<button type="button" class="btn btn-warning btn-block squareBtn tl">
-		                  				<span class="glyphicon glyphicon-cog"></span> Ustawienia konta
-		                			</button>
-	                			</a>
-	                			<div class="marginTop5">
 	 								<a href="wyloguj" class="logoutBtn">
 		 								<button type="button" class="btn btn-danger btn-block squareBtn tl">
 			                				<span class="glyphicon glyphicon-log-out"></span> Wyloguj
@@ -78,7 +67,7 @@
 	            		</div>
 
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
-                         <form action="register-client-result.php" method="post">
+                         <form action="/podsumowanie" method="post">
 			              	<div class="padding10">
 			                	<h1>Zarejestruj klienta</h1>
 			                	<div class="input-group">
@@ -96,10 +85,6 @@
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
 			                  		<input type="text" class="form-control" name="reg-date" placeholder="Data urodzenia" aria-describedby="sizing-addon2">
-			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" name="reg-acNr" placeholder="Numer konta" aria-describedby="sizing-addon2">
 			                	</div><br>
 				                <input class="log-btn" type="submit" value="Dodaj klienta">
                                 <br /><br /><br /><br />

@@ -56,18 +56,6 @@
 		                			</a>
 	                			</div>
 	                			<div class="marginTop5">
-		                			<a href="kalendarz" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
-			                  				<span class="glyphicon glyphicon-calendar"></span> Kalendarz
-			                			</button>
-		                			</a>
-	                			</div><br /><br />
-	                			<a href="ustawienia" class="logoutBtn">
-		                			<button type="button" class="btn btn-warning btn-block squareBtn tl">
-		                  				<span class="glyphicon glyphicon-cog"></span> Ustawienia konta
-		                			</button>
-	                			</a>
-	                			<div class="marginTop5">
 	 								<a href="wyloguj" class="logoutBtn">
 		 								<button type="button" class="btn btn-danger btn-block squareBtn tl">
 			                				<span class="glyphicon glyphicon-log-out"></span> Wyloguj
@@ -80,34 +68,32 @@
 			            <div class="col-md-9 wow slideInRight" data-wow-duration="0.2s" data-wow-delay="0.4s">
 			              	<div class="padding10">
 			                	<h1>Wyszukaj klienta</h1>
+			                	<form method="post" action="/administrator-pulpit">
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Imię" aria-describedby="sizing-addon2">
+			                  		<input type="text" class="form-control" placeholder="Imię" name="imie" aria-describedby="sizing-addon2">
 			                	</div><br>
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Nazwisko" aria-describedby="sizing-addon2">
+			                  		<input type="text" class="form-control" placeholder="Nazwisko" name="nazwisko" aria-describedby="sizing-addon2">
 			                	</div><br>
 			                	<div class="input-group">
 			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="PESEL" aria-describedby="sizing-addon2">
+			                  		<input type="text" class="form-control" placeholder="PESEL" name="pesel" aria-describedby="sizing-addon2">
 			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Data urodzenia" aria-describedby="sizing-addon2">
-			                	</div><br>
-			                	<div class="input-group">
-			                  		<span class="input-group-addon" id="sizing-addon2"></span>
-			                  		<input type="text" class="form-control" placeholder="Numer konta" aria-describedby="sizing-addon2">
-			                	</div><br>
-				                <button type="button" class="btn btn-info squareBtn btn-lg">
-				                  <span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
-				                </button><br /><br /><br /><br />
+		
+					                <button class="btn btn-info squareBtn btn-lg" type="submit">
+					                 Wyszukaj klienta
+					                </button>
 
+				               
+				                </form>
+				                <br /><br /><br /><br />
+<!--
 				                <h1>lista wszystkich klientów: </h1>
-				                <table class="table">
+				                <table class="table table-hover table-pointer">
 				                  	<thead class="thead-inverse color-info">
-				                    	<tr>
+				                    	<tr style="color:#fff; cursor: default; ">
 				                      		<th>#</th>
 				                      		<th>Imię</th>
 				                      		<th>Nazwisko</th>
@@ -117,28 +103,31 @@
 				                    	</tr>
 				                  	</thead>
 				                  	<tbody>
+-->
 					                    <? 
-					                    	if ($conn) { 
-						                    	mysql_select_db('logowanie');
-												mysql_query("SET NAMES utf8");
-						                    	$result = mysql_query("SELECT * FROM klient");
-						                    	$i = 1;
-						                      	while($row = mysql_fetch_array($result)) {
-						                      		$resultKonto = mysql_fetch_array(mysql_query("SELECT id_klienta, nr_konta FROM konto WHERE id_klienta = '".$row['id_klienta']."' "));
-						                      		echo '<tr>';
-					                      			echo '<th scope="row">'.$i.'</th>';
-					                      			echo '<td>'.$row['imie'].'</td>';
-					                      			echo '<td>'.$row['nazwisko'].'</td>';
-					                      			echo '<td>'.$row['pesel'].'</td>';
-					                      			echo '<td>'.$row['data_urodzenia'].'</td>';
-					                      			echo '<td>'.$resultKonto['nr_konta'].'</td>';
-					                    			echo '</tr>';
-						                        	$i++;
-						                      	}
-					                  		}
+					                    	//if ($conn) { 
+						                    //	mysql_select_db('logowanie');
+											//	mysql_query("SET NAMES utf8");
+						                    //	$result = mysql_query("SELECT * FROM klient");
+						                    //	$i = 1;
+						                    //  	while($row = mysql_fetch_array($result)) {
+						                    //  		$resultKonto = mysql_fetch_array(mysql_query("SELECT id_klienta, nr_konta FROM konto WHERE id_klienta = '".$row['id_klienta']."' "));
+						                    //  		echo '<tr class="clickable-row" data-href="/administrator-pulpit?id='.$row['id_klienta'].'" ">';
+					                      	//		echo '<th scope="row">'.$i.'</th>';
+					                      	//		echo '<td>'.$row['imie'].'</td>';
+					                      	//		echo '<td>'.$row['nazwisko'].'</td>';
+					                      	//		echo '<td>'.$row['pesel'].'</td>';
+					                      	//		echo '<td>'.$row['data_urodzenia'].'</td>';
+					                      	//		echo '<td>'.$resultKonto['nr_konta'].'</td>';
+					                    	//		echo '</tr>';
+						                    //  	$i++;
+						                    //  	}
+					                  		//}
 					                    ?>
+					                    <!--
 				                  	</tbody>
 				                </table>
+				                -->
 				            </div>
 				        </div>
 	          		</div>

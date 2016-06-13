@@ -1,6 +1,11 @@
-﻿<?php
+<?php
+
 	include 'include/setBodyId.php'; 
 	include 'include/db.php'; 
+
+	$conn2 = mysqli_connect("localhost","root","","logowanie") or die("Some error occurred during connection " . mysqli_error($conn2));
+	$conn2->set_charset("utf8");
+
 	session_start();
 	if(!isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==false))
 	{
@@ -8,7 +13,7 @@
 		exit(); // opuszczamy plik wykonuje sie tylko header
 	}
 	
-	if (!isset($_POST["reg-name1"]) || !isset($_POST["reg-name2"]) || !isset($_POST["reg-pesel"]) || !isset($_POST["reg-date"]) || !isset($_POST["reg-acNr"]) || $_POST["reg-name1"] == "" || $_POST["reg-name2"] == "" || $_POST["reg-pesel"] == "" || $_POST["reg-date"] == "" || $_POST["reg-acNr"] == "")
+	if (!isset($_POST["reg-name1"]) || !isset($_POST["reg-name2"]) || !isset($_POST["reg-pesel"]) || !isset($_POST["reg-date"]) || $_POST["reg-name1"] == "" || $_POST["reg-name2"] == "" || $_POST["reg-pesel"] == "" || $_POST["reg-date"] == "")
 	{
 		$message = "Wprowadzono błędne dane!";
 		$add_result = false;
@@ -21,8 +26,20 @@
 		$name2 = $_POST["reg-name2"];
 		$pesel = $_POST["reg-pesel"];
 		$date  = $_POST["reg-date"];
-		$acNr  = $_POST["reg-acNr"];
 		
+
+	  	$dlugoscCiagu = 25;
+	  	$znaki = array(1,2,3,4,5,6,7,8,9,0);
+	  	$acNr = "";
+	  	$i = 1;
+		do
+		{
+			$los = rand(0,9);
+			$acNr .= $znaki[$los];    
+			$i++;
+		}
+		while( $i<=$dlugoscCiagu );
+
 		$db_name1 = addslashes($name1);
 		$db_name2 = addslashes($name2);
 		$db_pesel = addslashes($pesel);
@@ -32,28 +49,42 @@
 		
 		// dodawanie wpisu do tabeli konto
 		$sql1 = "INSERT INTO konto (nr_konta, saldo, data_ot) VALUES ('$db_acNr', '0', '$data_add')";
-		$result = mysqli_query($conn, $sql1);
+		$result = mysqli_query($conn2, $sql1);
 	
 		if (!$result)
-			$message = "Błąd bazy danych: ".mysqli_error($conn);
+			$message = "Błąd bazy danych: ".mysqli_error($conn2);
 		else
 		{
 			$sql_last_id = "SELECT id_klienta FROM konto WHERE id_klienta IN (SELECT MAX(id_klienta) FROM konto)";
-			$result = mysqli_query($conn, $sql_last_id);
+			$result = mysqli_query($conn2, $sql_last_id);
 			$array = mysqli_fetch_array($result);
 			
 			$last_id = $array["id_klienta"];
 	
 			$sql2 = "INSERT INTO klient (id_klienta, imie, nazwisko, pesel, data_urodzenia) VALUES ('$last_id', '$db_name1','$db_name2','$db_pesel','$db_date')";
-			$result = mysqli_query($conn, $sql2);			
+			$result = mysqli_query($conn2, $sql2);			
 		
 			if (!$result)
-			    $message = "Błąd bazy danych: ".mysqli_error($conn);
+			    $message = "Błąd bazy danych: ".mysqli_error($conn2);
 			else
 			{
 				$add_result = true;
 		 		$message = "Dane dodane poprawnie!";
 			}
+
+			if ( $conn ) {
+
+				mysql_select_db("logowanie");
+				$history_data = date('Y/m/d H:i:s');
+				$history = 'INSERT INTO historia'.'(id_pracownika, data, operacja) VALUES ("'.$_SESSION['id_pracownika'].'","'.$history_data.'", "Dodanie klienta.")';
+				$history_retval = mysql_query( $history, $conn );
+				if(! $history_retval ) {
+				  die('Błąd: ' . mysql_error());
+				} 
+
+			}
+
+
 		}
 	}
 ?>
@@ -104,18 +135,6 @@
 			                			</button>
 		                			</a>
 	                			</div>
-	                			<div class="marginTop5">
-		                			<a href="kalendarz" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
-			                  				<span class="glyphicon glyphicon-calendar"></span> Kalendarz
-			                			</button>
-		                			</a>
-	                			</div><br /><br />
-	                			<a href="ustawienia" class="logoutBtn">
-		                			<button type="button" class="btn btn-warning btn-block squareBtn tl">
-		                  				<span class="glyphicon glyphicon-cog"></span> Ustawienia konta
-		                			</button>
-	                			</a>
 	                			<div class="marginTop5">
 	 								<a href="wyloguj" class="logoutBtn">
 		 								<button type="button" class="btn btn-danger btn-block squareBtn tl">

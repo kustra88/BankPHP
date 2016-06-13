@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	include 'include/setBodyId.php'; 
 	include 'include/db.php'; 
 	session_start();
@@ -29,12 +29,13 @@
 		$db_pesel = addslashes($pesel);
 		$db_date = addslashes($date);
 						
-		
+		mysql_select_db('logowanie');
+		mysql_query("SET NAMES utf8");
 		$sql = "UPDATE klient SET id_klienta='$db_id', imie='$name1', nazwisko='$name2', pesel='$pesel', data_urodzenia='$db_date' WHERE id_klienta=$db_id";
-		$result = mysqli_query($conn, $sql);			
+		$result = mysql_query($sql, $conn);			
 		
 			if (!$result)
-			    $message = "Błąd bazy danych: ".mysqli_error($conn);
+			    $message = "Błąd bazy danych: ".mysql_error($conn);
 			else
 			{
 				$add_result = true;
@@ -70,14 +71,14 @@
 	              			<div class="padding10">
 	              				<div class="marginTop5">
 		              				<a href="administrator" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
+			                			<button type="button" class="btn btn-success btn-block squareBtn tl">
 			                  				<span class="glyphicon glyphicon-search"></span> Wyszukaj klienta
 			                			</button>
 		                			</a>
 	                			</div>
 	                			<div class="marginTop5">
 		                			<a href="register-client.php" class="logoutBtn">
-			                			<button type="button" class="btn btn-success btn-block squareBtn tl">
+			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
 			                  				<span class="glyphicon glyphicon-user"></span> Zarejestruj klienta
 			                			</button>
 		                			</a>
@@ -89,18 +90,6 @@
 			                			</button>
 		                			</a>
 	                			</div>
-	                			<div class="marginTop5">
-		                			<a href="kalendarz" class="logoutBtn">
-			                			<button type="button" class="btn btn-info btn-block squareBtn tl">
-			                  				<span class="glyphicon glyphicon-calendar"></span> Kalendarz
-			                			</button>
-		                			</a>
-	                			</div><br /><br />
-	                			<a href="ustawienia" class="logoutBtn">
-		                			<button type="button" class="btn btn-warning btn-block squareBtn tl">
-		                  				<span class="glyphicon glyphicon-cog"></span> Ustawienia konta
-		                			</button>
-	                			</a>
 	                			<div class="marginTop5">
 	 								<a href="wyloguj" class="logoutBtn">
 		 								<button type="button" class="btn btn-danger btn-block squareBtn tl">
